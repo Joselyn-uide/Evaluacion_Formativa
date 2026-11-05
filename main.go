@@ -111,4 +111,20 @@ func main() {
 		NewSyrup("Jarabe para la fiebre", "Farmacéutica D", "2023-04-20", 12, 150.0, "Frutas"),
 	}
 
+	fmt.Println("---- INVENTARIO DE TABLETAS ----")
+	for _, t := range inventarioTablets {
+		t.MostrarInfo()
+	}
+
+	fmt.Println("---- INVENTARIO DE JARABES ----")
+	for _, s := range inventarioJarabes {
+		s.MostrarInfo()
+	}
+
+	fmt.Println("\n---- PRUEBA DE SETTER Y GETTER ----")
+	fmt.Printf("Nombre original: %s\n", inventarioTablets[0].GetName())
+
+	inventarioTablets[0].SetName("Paracetamol Extra")
+
+	fmt.Printf("Nombre modificado: %s\n", inventarioTablets[0].GetName())
 }
