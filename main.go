@@ -89,14 +89,18 @@ func NewSyrup(name string, manufacturer string, manufactureDate string, shelfLif
 	}
 }
 
+func (m Medicine) CalcularCaducidad() {
+	fmt.Printf("Caduca a los %d meses de su fabricación (%s)\n", m.shelfLife, m.manufactureDate)
+}
+
 // MÉTODOS
 func (t Tablet) MostrarInfo() {
-	fmt.Printf("[Tableta] Nombre: %s | Fabricante: %s | Dosis: %.2f mg | Requiere receta: %t | Vida útil: %d meses | Fabricación: %s\n",
+	fmt.Printf("\n[Tableta] Nombre: %s | Fabricante: %s | Dosis: %.2f mg | Requiere receta: %t | Vida útil: %d meses | Fabricación: %s\n",
 		t.GetName(), t.GetManufacturer(), t.dosePerTablet, t.isPrescription, t.GetShelfLife(), t.GetManufactureDate())
 }
 
 func (s Syrup) MostrarInfo() {
-	fmt.Printf("[Jarabe] Nombre: %s | Fabricante: %s | Volumen: %.2f ml | Sabor: %s | Vida útil: %d meses | Fabricación: %s\n",
+	fmt.Printf("\n[Jarabe] Nombre: %s | Fabricante: %s | Volumen: %.2f ml | Sabor: %s | Vida útil: %d meses | Fabricación: %s\n",
 		s.GetName(), s.GetManufacturer(), s.volume, s.flavor, s.GetShelfLife(), s.GetManufactureDate())
 }
 
@@ -127,4 +131,14 @@ func main() {
 	inventarioTablets[0].SetName("Paracetamol Extra")
 
 	fmt.Printf("Nombre modificado: %s\n", inventarioTablets[0].GetName())
+
+	fmt.Println("\n---- CÁLCULO DE CADUCIDAD ----")
+	for _, t := range inventarioTablets {
+		fmt.Printf("Tableta '%s' ", t.GetName())
+		t.CalcularCaducidad()
+	}
+	for _, s := range inventarioJarabes {
+		fmt.Printf("Jarabe '%s' ", s.GetName())
+		s.CalcularCaducidad()
+	}
 }
